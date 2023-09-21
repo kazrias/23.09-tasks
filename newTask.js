@@ -48,3 +48,40 @@ class UniversityMember {
   }
 }
 
+class Teacher extends UniversityMember {
+  constructor(name, age) {
+    super(name, age)
+    this.role = 'teacher'
+  }
+}
+
+class Student extends UniversityMember {
+  constructor(name, age) {
+    super(name, age)
+    this.role = 'student'
+  }
+}
+
+let teacher1 = new Teacher('firstT', 40);
+let teacher2 = new Teacher('secondT', 41);
+let teacher3 = new Teacher('thirdT', 42)
+
+let student1 = new Student('firstS', 20);
+let student2 = new Student('secondS', 21);
+let student3 = new Student('thirdS', 22)
+
+
+let eua = new University('EUA');
+eua.addMember(teacher1, teacher2, teacher3, student1, student2, student3)
+console.log(eua);
+
+eua.removeMember(teacher1, teacher2, student3)
+console.log(eua);
+
+eua.startLesson()
+// eua.startLesson()
+
+console.log('after lesson');
+console.log(teacher3.energy)
+console.log(student2.energy)
+console.log(eua);
