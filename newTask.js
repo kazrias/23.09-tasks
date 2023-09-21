@@ -32,5 +32,19 @@ class University {
   }
 }
 
-
+class UniversityMember {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+    this.energy = 24;
+  }
+  get info() {
+    return {
+      name: this.name,
+      age: this.age,
+      role: this.role,
+      energy: this.energy,
+    }
+  }
+}
 
