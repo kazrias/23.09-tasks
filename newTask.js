@@ -5,9 +5,18 @@ class Jungle {
     this.snakes = []
   }
   soundOff() {
-    const noiseOfTigers = this.tigers.forEach(({ sound, energy }) => sound() + energy)
-    const noiseOfMonkeys = this.tigers.forEach(({ sound, energy }) => sound() + energy)
-    const noiseOfSnakes = this.tigers.forEach(({ sound, energy }) => sound() + energy)
+    const noiseOfTigers = []
+    for (let tiger of this.tigers) {
+      noiseOfTigers.push(tiger.sound() + tiger.energy)
+    }
+    const noiseOfMonkeys = []
+    for (let monkey of this.monkeys) {
+      noiseOfMonkeys.push(monkey.sound() + monkey.energy)
+    }
+    const noiseOfSnakes = []
+    for (let snake of this.snakes) {
+      noiseOfSnakes.push(snake.sound() + snake.energy)
+    }
     return [noiseOfTigers, noiseOfMonkeys, noiseOfSnakes];
   }
 
@@ -53,7 +62,7 @@ class Tiger extends Animal {
   }
   sound() {
     super.sound()
-    return 'RrrRrr'
+    return 'RrrRrr '
   }
   eat(food) {
     if (food instanceof Grain) {
@@ -73,10 +82,11 @@ class Monkey extends Animal {
   }
   eat() {
     this.energy += 2;
+    return this;
   }
   sound() {
     this.energy -= 4;
-    return 'OaOaOa'
+    return 'OaOaOa '
   }
   play() {
     if (this.energy >= 8) {
@@ -88,13 +98,13 @@ class Monkey extends Animal {
 }
 
 class Snake extends Animal {
-  constructor() {
-    super();
+  constructor(jungle) {
+    super(jungle);
     this.type = 'snake'
   }
   sound() {
     super.sound()
-    return 'SssSss'
+    return 'SssSss '
   }
 }
 
@@ -116,5 +126,28 @@ class Meat extends Food {
 
 }
 
+let jungle = new Jungle()
+
+let tiger1 = new Tiger(jungle);
+let tiger2 = new Tiger(jungle)
+tiger1.eat()
+tiger1.eat()
+let monkey1 = new Monkey(jungle);
+let monkey2 = new Monkey(jungle);
+monkey2.sleep()
+monkey2.sleep()
+monkey2.sleep()
+let snake1 = new Snake(jungle);
+let snake2 = new Snake(jungle);
+snake1.sound()
+console.log(jungle)
+console.log(jungle.soundOff())
+
+let grain = new Grain();
+
+console.log(tiger1.eat());
+console.log(monkey1.energy)
+monkey1.eat().eat().eat().eat()
 
 
+console.log(monkey1.energy)
