@@ -31,14 +31,16 @@ class Animal {
 
   }
   sound() {
+    console.log(`${this.type}'s making noise`)
     this.energy -= 3;
   }
-  eat(food) {
+  eat() {
     console.log(`${this.type}'s eating`)
     this.energy += 5;
   }
-  
+
   sleep() {
+    console.log(`${this.type}'s sleeping`)
     this.energy += 10;
   }
 
@@ -53,10 +55,11 @@ class Tiger extends Animal {
     if (food instanceof Grain) {
       console.log('“I can’t eat that”')
     }
-    else super.eat(food)
+    else super.eat()
   }
   sleep() {
-    this.energy += 5;
+    this.sleep()
+    this.energy -= 5;
   }
 }
 
@@ -66,11 +69,12 @@ class Monkey extends Animal {
     this.type = 'monkey'
   }
   eat(food) {
-    this.energy += 2;
+    super.eat(food);
+    this.energy -= 3;
   }
   sound() {
     super.sound();
-    this.energy -= 4;
+    this.energy -= 1;
   }
   play() {
     if (this.energy >= 8) {
