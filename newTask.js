@@ -5,7 +5,10 @@ class Jungle {
     this.snakes = []
   }
   soundOff() {
-
+    const noiseOfTigers = this.tigers.forEach(({ sound, energy }) => sound() + energy)
+    const noiseOfMonkeys = this.tigers.forEach(({ sound, energy }) => sound() + energy)
+    const noiseOfSnakes = this.tigers.forEach(({ sound, energy }) => sound() + energy)
+    return [noiseOfTigers, noiseOfMonkeys, noiseOfSnakes];
   }
 
 }
@@ -26,21 +29,18 @@ class Animal {
   }
   set energy(val) {
     if (val < 0)
-      console.error(`${this.type} doesn't have enough energy`)
+      return `${this.type} doesn't have enough energy`
     else this.#energy = val;
 
   }
   sound() {
-    console.log(`${this.type}'s making noise`)
     this.energy -= 3;
   }
   eat() {
-    console.log(`${this.type}'s eating`)
     this.energy += 5;
   }
 
   sleep() {
-    console.log(`${this.type}'s sleeping`)
     this.energy += 10;
   }
 
@@ -51,15 +51,18 @@ class Tiger extends Animal {
     super(jungle);
     this.type = 'tiger'
   }
+  sound() {
+    super.sound()
+    return 'RrrRrr'
+  }
   eat(food) {
     if (food instanceof Grain) {
-      console.log('“I can’t eat that”')
+      return '“I can’t eat that”'
     }
     else super.eat()
   }
   sleep() {
-    this.sleep()
-    this.energy -= 5;
+    this.energy += 5;
   }
 }
 
@@ -68,20 +71,19 @@ class Monkey extends Animal {
     super(jungle);
     this.type = 'monkey'
   }
-  eat(food) {
-    super.eat(food);
-    this.energy -= 3;
+  eat() {
+    this.energy += 2;
   }
   sound() {
-    super.sound();
-    this.energy -= 1;
+    this.energy -= 4;
+    return 'OaOaOa'
   }
   play() {
     if (this.energy >= 8) {
       this.energy -= 8;
-      console.log('“Oooo Oooo”');
+      return '“Oooo Oooo”'
     }
-    else console.log('“I’m too tired”')
+    else return '“I’m too tired”'
   }
 }
 
@@ -89,6 +91,10 @@ class Snake extends Animal {
   constructor() {
     super();
     this.type = 'snake'
+  }
+  sound() {
+    super.sound()
+    return 'SssSss'
   }
 }
 
