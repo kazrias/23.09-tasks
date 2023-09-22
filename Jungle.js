@@ -125,29 +125,3 @@ class Grain extends Food {
 class Meat extends Food {
 
 }
-
-let jungle = new Jungle()
-
-let tiger1 = new Tiger(jungle);
-let tiger2 = new Tiger(jungle)
-tiger1.eat()
-tiger1.eat()
-let monkey1 = new Monkey(jungle);
-let monkey2 = new Monkey(jungle);
-monkey2.sleep()
-monkey2.sleep()
-monkey2.sleep()
-let snake1 = new Snake(jungle);
-let snake2 = new Snake(jungle);
-snake1.sound()
-console.log(jungle)
-console.log(jungle.soundOff())
-
-let grain = new Grain();
-
-console.log(tiger1.eat());
-console.log(monkey1.energy)
-monkey1.eat().eat().eat().eat()
-
-
-console.log(monkey1.energy)
